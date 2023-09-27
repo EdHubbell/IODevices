@@ -967,7 +967,9 @@ namespace IODevices
 
         }
 
-        //send command and wait for response
+        /// <summary>
+        /// send command and wait for response
+        /// </summary>
         protected int makeQueryAsync(string cmd, TextBox text, IOCallback callback, bool cbwait, bool retry, int tag)
         {
 
@@ -1012,7 +1014,9 @@ namespace IODevices
 
 
 
-        //send command, no response
+        /// <summary>
+        /// send command, no response
+        /// </summary>
         protected int makeSendAsync(string cmd, IOCallback callback, bool cbwait, bool retry, int tag)
         {
 
@@ -1049,14 +1053,20 @@ namespace IODevices
             return 0;
 
         }
-        //send command, no response,
+
+        /// <summary>
+        /// send command, no response
+        /// </summary>
         public int SendAsync(string cmd, IOCallback callback, bool retry, bool cbwait, int tag)
         {
 
             return makeSendAsync(cmd, callback, cbwait, retry, tag);
 
         }
-        //default behavior : no callback
+
+        /// <summary>
+        /// default behavior : no callback
+        /// </summary>
         public int SendAsync(string cmd, bool retry)
         {
 
@@ -1071,24 +1081,19 @@ namespace IODevices
         //send command and wait for response
 
 
+        /// <summary>
+        /// return -1 if blocking call in progress (may happen if events allowed), -2 disabled, otherwise return status as in IOQuery (0 if ok)
+        /// </summary>
         public int QueryBlocking(string cmd, out IOQuery q, bool retry)
         {
 
-
-            //return -1 if blocking call in progress (may happen if events allowed), -2 disposing
-            //otherwise return status as in IOQuery (0 if ok)
-
-
             q = new IOQuery(2, cmd, 0);
-
-
 
             if (disposing)
             {
                 q.status = -2;
                 return q.status;
             }
-
 
             if (currentblockingtask != null)
             {
@@ -1129,13 +1134,13 @@ namespace IODevices
 
 
 
-
+        /// <summary>
+        /// return -1 if blocking call in progress (may happen if events allowed), -2 disabled, otherwise return status as in IOQuery (0 if ok)
+        /// </summary>
         public int QueryBlocking(string cmd, out string resp, bool retry)
         {
-
-
-            //return -1 if blocking call in progress (may happen if events allowed), -2 disabled
-            //otherwise return status as in IOQuery (0 if ok)
+            //
+            //
 
             resp = null;
 
@@ -1164,7 +1169,6 @@ namespace IODevices
         //********************************
         public int QueryBlocking(string cmd, out byte[] resparr, bool retry)
         {
-
             //return -1 if blocking call in progress (may happen if events allowed), -2 disabled
             //otherwise return status as in IOQuery (0 if ok)
 
@@ -1189,8 +1193,6 @@ namespace IODevices
             }
 
             return st;
-
-
         }
 
 
@@ -1250,11 +1252,7 @@ namespace IODevices
 
         public virtual string ByteArrayToString(byte[] arr)
         {
-
             string s = null;
-
-
-
 
             try
             {
@@ -1279,12 +1277,8 @@ namespace IODevices
 
             }
 
-
-
-
             return s;
         }
-
 
 
 
